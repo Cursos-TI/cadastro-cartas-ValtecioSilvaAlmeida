@@ -1,11 +1,12 @@
 #include <stdio.h>
+#include <string.h>
+#include <windows.h>
 
-// Desafio Super Trunfo - Países
-// Tema 1 - Cadastro das cartas
-// Objetivo: No nível novato você deve criar as cartas representando as cidades utilizando scanf para entrada de dados e printf para exibir as informações.
+int main(void) {
+    SetConsoleOutputCP(CP_UTF8); // Resolução de caracteres especiais no terminal
+    SetConsoleCP(CP_UTF8);
 
-int main() {
-  printf("------------------------------------");
+    printf("------------------------------------");
     printf("\n|           SUPER TRUNFO           |\n");
     printf("------------------------------------\n");
 
@@ -17,6 +18,8 @@ int main() {
     float area_km_carta_1;
     float pib_carta_1;
     int qtd_pontos_turisticos_carta_1;
+    float densidade_populacional_carta_1;
+    float pib_per_capita_carta_1;
 
     // Dados da carta 2A
     char estado_carta_2;
@@ -26,6 +29,8 @@ int main() {
     float area_km_carta_2;
     float pib_carta_2;
     int qtd_pontos_turisticos_carta_2;
+    float densidade_populacional_carta_2;
+    float pib_per_capita_carta_2;
 
     // Captura de dados da carta 1
     printf("Insira os dados da carta 1\n\n");
@@ -37,13 +42,13 @@ int main() {
     printf("- Cidade (até 30 caracteres): ");
     fgets(cidade_carta_1, sizeof(cidade_carta_1), stdin); // Entrada de dados que aceita strings com mais segurança
     cidade_carta_1[strcspn(cidade_carta_1, "\n")] = '\0'; // Remove o \n que o fgets insere no final do imput
-    printf("- População (número inteiro): ");
+    printf("- População (Quantitativo): ");
     scanf("%d", &populacao_carta_1);
     getchar(); // consome o '\n' deixado pelo scanf
-    printf("- Área (número real): ");
+    printf("- Área (km²): ");
     scanf("%f", &area_km_carta_1);
     getchar(); // consome o '\n' deixado pelo scanf
-    printf("- PIB (número real): ");
+    printf("- PIB (R$): ");
     scanf("%f", &pib_carta_1);
     getchar(); // consome o '\n' deixado pelo scanf
     printf("- Número de pontos turísticos: ");
@@ -60,20 +65,20 @@ int main() {
     printf("- Cidade (até 30 caracteres): ");
     fgets(cidade_carta_2, sizeof(cidade_carta_2), stdin); // Entrada de dados que aceita strings com mais segurança
     cidade_carta_2[strcspn(cidade_carta_2, "\n")] = '\0'; // Remove o \0 que o fgets insere no final do imput
-    printf("- População (número inteiro): ");
+    printf("- População (Quantitativo): ");
     scanf("%d", &populacao_carta_2);
     getchar(); // consome o '\n' deixado pelo scanf
-    printf("- Área (número real): ");
+    printf("- Área (km²): ");
     scanf("%f", &area_km_carta_2);
     getchar(); // consome o '\n' deixado pelo scanf
-    printf("- PIB (número real): ");
+    printf("- PIB (R$): ");
     scanf("%f", &pib_carta_2);
     getchar(); // consome o '\n' deixado pelo scanf
     printf("- Número de pontos turísticos: ");
     scanf("%d", &qtd_pontos_turisticos_carta_2);
     getchar(); // consome o '\n' deixado pelo scanf
 
-    printf("\n------------------------------------ \n\n");
+    printf("------------------------------------ \n\n");
 
     printf("RESULTADO:\n\n");
 
@@ -83,10 +88,14 @@ int main() {
     printf("Nome da Cidade: %s\n", cidade_carta_1);
     printf("População: %d\n", populacao_carta_1);
     printf("Área: %.2f km² \n", area_km_carta_1);
-    printf("PIB: %.2f\n", pib_carta_1);
+    printf("PIB: %.2f reais\n", pib_carta_1);
     printf("Número de pontos turísticos: %d\n", qtd_pontos_turisticos_carta_1);
+    densidade_populacional_carta_1 = (float) populacao_carta_1 / area_km_carta_1;
+    pib_per_capita_carta_1 =  pib_carta_1 / (float) populacao_carta_1;
+    printf("Densidade Populacional: %.2f\n", densidade_populacional_carta_1);
+    printf("PIB per capita: %.2f\n", pib_per_capita_carta_1);
 
-    printf("\n------------------------------------ \n\n");
+    printf("\n ------------------------------------ \n\n");
 
     printf("Carta 2: \n");
     printf("Estado: %c\n", estado_carta_2);
@@ -94,8 +103,12 @@ int main() {
     printf("Nome da Cidade: %s\n", cidade_carta_2);
     printf("População: %d\n", populacao_carta_2);
     printf("Área: %.2f km²\n", area_km_carta_2);
-    printf("PIB: %.2f\n", pib_carta_2);
+    printf("PIB: %.2f reais\n", pib_carta_2);
     printf("Número de pontos turísticos: %d\n", qtd_pontos_turisticos_carta_2);
+    densidade_populacional_carta_2 = (float) populacao_carta_2 / area_km_carta_2;
+    pib_per_capita_carta_2 =  pib_carta_2 / (float) populacao_carta_2;
+    printf("Densidade Populacional: %.2f\n", densidade_populacional_carta_2);
+    printf("PIB per capita: %.2f\n", pib_per_capita_carta_2);
 
     return 0;
-} 
+}
